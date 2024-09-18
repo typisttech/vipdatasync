@@ -1,0 +1,10 @@
+[
+    {
+        "domain": "example.hk",
+        "path": "zh"
+    },
+    {
+        "domain": "example.hk",
+        "path": "en"
+    }
+]
