@@ -1,0 +1,46 @@
+! exec vipdatasync validate --urls=urls.json --config=config.yml
+cmp stdout golden.out
+cmp stderr golden.err
+
+-- config.yml --
+data_sync:
+  domain_map:
+    vip-example.com: example-com-staging.go-vip.net
+    example.go-vip.net/zh: example-com-staging.go-vip.net/zh
+
+-- urls.json --
+[
+    {
+        "url": "https://example.go-vip.net"
+    },
+    {
+        "url": "https://vip-example.com/en"
+    },
+    {
+        "url": "https://example.go-vip.net/en"
+    },
+    {
+        "url": "https://example.go-vip.net/zh"
+    }
+]
+
+-- golden.out --
+DUPLICATED DESTINATIONS
+
+        No problems found
+
+DUPLICATED TOS
+
+        No problems found
+
+UNREPLACED URLS
+
+     1. https://example.go-vip.net
+     2. https://example.go-vip.net/en
+
+UNUSED DOMAIN MAP ITEMS
+
+        No problems found
+
+-- golden.err --
+vipdatasync: error: 2 problem(s) found

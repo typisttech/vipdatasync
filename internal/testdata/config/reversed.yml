@@ -1,0 +1,8 @@
+data_sync:
+  domain_map:
+    example.go-vip.net: example-com-staging.go-vip.net
+    vip-example.com: example-com-staging.go-vip.net
+    www.example.com.uk: example-com-staging.go-vip.net/uk
+    www.example.hk: example-com-staging.go-vip.net/hk
+    www.example.hk/en: example-com-staging.go-vip.net/hk-en
+    www.example.hk/zh: example-com-staging.go-vip.net/hk-zh

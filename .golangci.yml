@@ -1,0 +1,40 @@
+linters:
+  presets:
+    - bugs
+    - comment
+    - complexity
+    - error
+    - format
+    - import
+    - metalinter
+    - module
+    - performance
+    - sql
+    - style
+    - test
+    - unused
+
+  disable:
+    - depguard
+    - err113
+    - testpackage
+    - varnamelen
+    - wrapcheck
+
+issues:
+  exclude-rules:
+    - path: '(.+)_test\.go'
+      linters:
+        - dupl
+        - exhaustruct
+        - funlen
+
+    - path: 'cmd/.+'
+      linters:
+        - paralleltest
+
+linters-settings:
+  tagliatelle:
+    case:
+      rules:
+        yaml: snake

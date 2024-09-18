@@ -1,0 +1,18 @@
+! exec vipdatasync validate --urls=urls.json --config=config.yml
+! stdout .
+cmp stderr golden.err
+
+-- config.yml --
+data_sync:
+  not_domain_map:
+    foo.com/en: foo-com-staging.go-vip.net/en
+
+-- urls.json --
+[
+    {
+        "url": "https://foo.com/en"
+    }
+]
+
+-- golden.err --
+vipdatasync: error: domain_map is empty
