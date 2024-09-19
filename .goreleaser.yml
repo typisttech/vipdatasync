@@ -33,6 +33,7 @@ brews:
     commit_author:
       name: tangrufusbot
       email: 39258755+tangrufusbot@users.noreply.github.com
+    directory: Formula
     skip_upload: auto
     test: |
       system "#{bin}/vipdatasync --version"
