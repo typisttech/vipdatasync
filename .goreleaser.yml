@@ -47,9 +47,8 @@ brews:
         depends_on "go" => :build
       end
 
-    # TODO!
     test: |
-      system "#{bin}/vipdatasync" "--version222"
+      system "#{bin}/vipdatasync" "--version"
 
     install: |
       if build.head?
