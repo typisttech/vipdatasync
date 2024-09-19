@@ -465,15 +465,15 @@ Visit the [latest release](https://github.com/typisttech/vipdatasync/releases/la
 2. Extract the archive
 3. (Optional) xxx
     ```console
-    gh attestation verify /path/to/vipdatasync_0.0.1_xxx_yyy/vipdatasync --repo typisttech/vipdatasync --signer-repo typisttech/vipdatasync
+    gh attestation verify /path/to/vipdatasync_999.888.777_xxx_yyy/vipdatasync --repo typisttech/vipdatasync --signer-repo typisttech/vipdatasync
 
-    Loaded digest sha256:xxxxxxxxxxxxxxxxxx for file:///path/to/vipdatasync_0.0.1_xxx_yyy/vipdatasync
+    Loaded digest sha256:xxxxxxxxxxxxxxxxxx for file:///path/to/vipdatasync_999.888.777_xxx_yyy/vipdatasync
     Loaded 1 attestation from GitHub API
     ✓ Verification succeeded!
 
     sha256:xxxxxxxxxxxxxxxxxx was attested by:
     REPO                    PREDICATE_TYPE                  WORKFLOW
-    typisttech/vipdatasync  https://slsa.dev/provenance/v1  .github/workflows/go-release.yml@refs/tags/v0.0.1
+    typisttech/vipdatasync  https://slsa.dev/provenance/v1  .github/workflows/go-release.yml@refs/tags/v999.888.777
     ```
 4. Move the executable to the desired directory
 5. Add this directory to the `PATH` environment variable
