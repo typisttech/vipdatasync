@@ -41,10 +41,12 @@ brews:
     license: MIT
     skip_upload: auto
     custom_block: |
+      # rubocop:disable FormulaAudit/ComponentsOrder,Style/DisableCopsWithinSourceCodeDirective
       head do
         url "https://github.com/typisttech/vipdatasync.git", branch: "main"
         depends_on "go" => :build
       end
+      # rubocop:enable FormulaAudit/ComponentsOrder,Style/DisableCopsWithinSourceCodeDirective
     test: |
       system "#{bin}/vipdatasync", "--version"
     install: |
