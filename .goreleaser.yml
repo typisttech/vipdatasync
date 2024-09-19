@@ -125,11 +125,4 @@ sboms:
     # - binary:     binaries output from the build stage
     #
     # Default: 'archive'.
-    artifacts: binary
-
-    # IDs of the artifacts to catalog.
-    #
-    # If `artifacts` is "source" or "any" then this fields has no effect.
-    # ids:
-    #   - foo
-    #   - bar
+    artifacts: any
