@@ -478,7 +478,7 @@ install using one of the methods described below.
 > See `$ go help install` or [https://golang.org/ref/mod#go-install](https://golang.org/ref/mod#go-install) for details.
 
 ```bash
-go install https://github.com/typisttech/cmd/vipdatasync@v999.888.777
+go install github.com/typisttech/vipdatasync/cmd/vipdatasync@v999.888.777
 ```
 
 ## Develop
