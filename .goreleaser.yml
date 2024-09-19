@@ -39,4 +39,4 @@ brews:
     repository:
       owner: typisttech
       name: homebrew-vipdatasync
-      token: "{{ .Env.GITHUB_PERSONAL_AUTH_TOKEN }}"
+      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
