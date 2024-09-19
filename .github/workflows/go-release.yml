@@ -28,6 +28,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAP_GITHUB_TOKEN: ${{ secrets.TAP_GITHUB_TOKEN }}
-      - uses: actions/attest-build-provenance@v1
+      # - uses: actions/attest-build-provenance@v1
+      #   with:
+      #     subject-path: 'dist/vipdatasync_*/vipdatasync'
+      - uses: actions/upload-artifact@v4
         with:
-          subject-path: 'dist/vipdatasync_*/vipdatasync'
+          path: 'dist/*'
+          if-no-files-found: error
