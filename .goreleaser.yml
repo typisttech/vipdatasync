@@ -55,10 +55,9 @@ brews:
       if build.head?
         system "go", "build", "-o", "dist/vipdatasync", "./cmd/vipdatasync"
         bin.install "dist/vipdatasync"
-        return
+      else
+        bin.install "vipdatasync"
       end
-
-      bin.install "vipdatasync"
 
     repository:
       owner: typisttech
