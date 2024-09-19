@@ -15,7 +15,8 @@ builds:
     flags:
       - -trimpath
     ldflags:
-      - -s -w -X main.builtBy=goreleaser
+      - -s -w -X main.version={{ .Version }} -X main.fullCommit={{ .FullCommit }} -X main.commitDate={{ .CommitDate }} -X main.builtBy=goreleaser -X main.treeState={{ .IsGitDirty }}
+
 
 gomod:
   proxy: true

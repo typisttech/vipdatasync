@@ -4,10 +4,6 @@ import (
 	"github.com/alecthomas/kong"
 )
 
-const (
-	description = `CLI utility for WordPress VIP data sync management`
-)
-
 type cli struct {
 	ValidateCmd validateCmd `cmd:"" help:"Validate the environment-specific YAML config file against production URLs" name:"validate"` //nolint:lll
 
