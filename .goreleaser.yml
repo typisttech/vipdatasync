@@ -30,39 +30,39 @@ gomod:
 changelog:
   disable: true
 
-brews:
-  - name: vipdatasync
-    commit_author:
-      name: tangrufusbot
-      email: 39258755+tangrufusbot@users.noreply.github.com
-    directory: Formula
-    homepage: "https://github.com/typisttech/vipdatasync"
-    description: "CLI utility for WordPress VIP data sync management"
-    license: MIT
-    skip_upload: auto
-    custom_block: |
-      # rubocop:disable FormulaAudit/ComponentsOrder,Style/DisableCopsWithinSourceCodeDirective
-      head do
-        url "https://github.com/typisttech/vipdatasync.git", branch: "main"
-        depends_on "go" => :build
-      end
-      # rubocop:enable FormulaAudit/ComponentsOrder,Style/DisableCopsWithinSourceCodeDirective
-    test: |
-      system "#{bin}/vipdatasync", "--version"
-    install: |
-      if build.head?
-        system "go", "build", "-o", "dist/vipdatasync", "./cmd/vipdatasync"
-        bin.install "dist/vipdatasync"
-      else
-        bin.install "vipdatasync"
-      end
-    repository:
-      owner: typisttech
-      name: homebrew-vipdatasync
-      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
-      branch: goreleaser
-      pull_request:
-        enabled: true
+# brews:
+#   - name: vipdatasync
+#     commit_author:
+#       name: tangrufusbot
+#       email: 39258755+tangrufusbot@users.noreply.github.com
+#     directory: Formula
+#     homepage: "https://github.com/typisttech/vipdatasync"
+#     description: "CLI utility for WordPress VIP data sync management"
+#     license: MIT
+#     skip_upload: auto
+#     custom_block: |
+#       # rubocop:disable FormulaAudit/ComponentsOrder,Style/DisableCopsWithinSourceCodeDirective
+#       head do
+#         url "https://github.com/typisttech/vipdatasync.git", branch: "main"
+#         depends_on "go" => :build
+#       end
+#       # rubocop:enable FormulaAudit/ComponentsOrder,Style/DisableCopsWithinSourceCodeDirective
+#     test: |
+#       system "#{bin}/vipdatasync", "--version"
+#     install: |
+#       if build.head?
+#         system "go", "build", "-o", "dist/vipdatasync", "./cmd/vipdatasync"
+#         bin.install "dist/vipdatasync"
+#       else
+#         bin.install "vipdatasync"
+#       end
+#     repository:
+#       owner: typisttech
+#       name: homebrew-vipdatasync
+#       token: "{{ .Env.TAP_GITHUB_TOKEN }}"
+#       branch: goreleaser
+#       pull_request:
+#         enabled: true
 
 sboms:
   - # ID of the sbom config, must be unique.
