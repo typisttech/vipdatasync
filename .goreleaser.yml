@@ -37,14 +37,17 @@ brews:
       email: 39258755+tangrufusbot@users.noreply.github.com
     directory: Formula
     homepage: "https://github.com/typisttech/vipdatasync"
-    description: "CLI utility for WordPress VIP data sync management."
+    description: "CLI utility for WordPress VIP data sync management"
     license: MIT
     skip_upload: auto
 
     # TODO!
     test: |
-      system "#{bin}/vipdatasync --version222"
+      system "#{bin}/vipdatasync" "--version222"
     repository:
       owner: typisttech
       name: homebrew-vipdatasync
       token: "{{ .Env.TAP_GITHUB_TOKEN }}"
+      branch: goreleaser
+      pull_request:
+        enabled: true
