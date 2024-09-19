@@ -15,7 +15,7 @@ func run() int {
 	ctx := kong.Parse(
 		&cli{}, //nolint:exhaustruct
 		kong.Description(description),
-		kong.DefaultEnvars("VIPDATASYNC"),
+		kong.DefaultEnvars(`VIPDATASYNC`),
 		kong.UsageOnError(),
 	)
 	err := ctx.Run()
