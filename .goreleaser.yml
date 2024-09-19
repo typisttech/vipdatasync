@@ -41,9 +41,18 @@ brews:
     license: MIT
     skip_upload: auto
 
+    # Custom block for brew.
+    # Can be used to specify alternate downloads for devel or head releases.
+    custom_block: |
+      head do 
+        "https://github.com/typisttech/vipdatasync", branch: "main"
+        depends_on "pkg-config" => :build
+      end
+
     # TODO!
     test: |
       system "#{bin}/vipdatasync" "--version222"
+
     repository:
       owner: typisttech
       name: homebrew-vipdatasync
