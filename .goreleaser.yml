@@ -48,7 +48,7 @@ brews:
       end
       # rubocop:enable FormulaAudit/ComponentsOrder,Style/DisableCopsWithinSourceCodeDirective
     test: |
-      system "#{bin}/vipdatasync", "--version"
+      system "#{bin}/vipdatasync", "--version345"
     install: |
       if build.head?
         system "go", "build", "-o", "dist/vipdatasync", "./cmd/vipdatasync"
