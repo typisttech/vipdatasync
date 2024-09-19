@@ -7,9 +7,7 @@ import (
 	"github.com/google/go-cmp/cmp/cmpopts"
 )
 
-func Test_checkDuplicatedTos(t *testing.T) { //nolint:maintidx
-	t.Parallel()
-
+func Test_checkDuplicatedTos(t *testing.T) {
 	tests := []struct {
 		name string
 		rs   []replacement
@@ -370,8 +368,6 @@ func Test_checkDuplicatedTos(t *testing.T) { //nolint:maintidx
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			t.Parallel()
-
 			got := checkDuplicatedTos(tt.rs)
 
 			ss := cmpopts.SortSlices(func(a, b duplicatedTosProblem) bool {
