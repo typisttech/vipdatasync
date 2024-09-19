@@ -31,4 +31,6 @@ jobs:
           TAP_GITHUB_TOKEN: ${{ secrets.TAP_GITHUB_TOKEN }}
       - uses: actions/attest-build-provenance@v1
         with:
-          subject-path: dist
+          subject-path: |
+            dist/*.gz
+            dist/*_checksums.txt
