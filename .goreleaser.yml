@@ -2,7 +2,9 @@ version: 2
 
 before:
   hooks:
+    - go mod tidy -diff
     - go mod download
+    - go mod verify
 
 builds:
   - main: ./cmd/vipdatasync

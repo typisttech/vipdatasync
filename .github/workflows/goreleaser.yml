@@ -1,4 +1,4 @@
-name: Release
+name: goreleaser
 
 on:
   push:
@@ -8,10 +8,10 @@ on:
 permissions: {}
 
 jobs:
-  release:
+  goreleaser:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+#    permissions:
+#      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
