@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+
 version: 2
 
 before:
@@ -34,9 +36,14 @@ brews:
       name: tangrufusbot
       email: 39258755+tangrufusbot@users.noreply.github.com
     directory: Formula
+    homepage: "https://github.com/typisttech/vipdatasync"
+    description: "CLI utility for WordPress VIP data sync management."
+    license: MIT
     skip_upload: auto
+
+    # TODO!
     test: |
-      system "#{bin}/vipdatasync --version"
+      system "#{bin}/vipdatasync --version222"
     repository:
       owner: typisttech
       name: homebrew-vipdatasync
