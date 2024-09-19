@@ -463,9 +463,21 @@ Visit the [latest release](https://github.com/typisttech/vipdatasync/releases/la
 
 1. Download the archive for the desired edition, operating system, and architecture
 2. Extract the archive
-3. Move the executable to the desired directory
-4. Add this directory to the `PATH` environment variable
-5. Verify that you have execute permission on the file
+3. (Optional) xxx
+    ```console
+    gh attestation verify /path/to/vipdatasync_0.0.1_xxx_yyy/vipdatasync --repo typisttech/vipdatasync --signer-repo typisttech/vipdatasync
+
+    Loaded digest sha256:xxxxxxxxxxxxxxxxxx for file:///path/to/vipdatasync_0.0.1_xxx_yyy/vipdatasync
+    Loaded 1 attestation from GitHub API
+    ✓ Verification succeeded!
+
+    sha256:xxxxxxxxxxxxxxxxxx was attested by:
+    REPO                    PREDICATE_TYPE                  WORKFLOW
+    typisttech/vipdatasync  https://slsa.dev/provenance/v1  .github/workflows/go-release.yml@refs/tags/v0.0.1
+    ```
+4. Move the executable to the desired directory
+5. Add this directory to the `PATH` environment variable
+6. Verify that you have execute permission on the file
 
 Please consult your operating system documentation if you need help setting file permissions or modifying your `PATH` environment variable.
 
