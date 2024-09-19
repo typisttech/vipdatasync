@@ -465,7 +465,7 @@ Visit the [latest release](https://github.com/typisttech/vipdatasync/releases/la
 2. Extract the archive
 3. (Optional) xxx
     ```console
-    gh attestation verify /path/to/vipdatasync_999.888.777_xxx_yyy/vipdatasync --repo typisttech/vipdatasync --signer-repo typisttech/vipdatasync
+    $ gh attestation verify /path/to/vipdatasync_999.888.777_xxx_yyy/vipdatasync --repo typisttech/vipdatasync --signer-repo typisttech/vipdatasync
 
     Loaded digest sha256:xxxxxxxxxxxxxxxxxx for file:///path/to/vipdatasync_999.888.777_xxx_yyy/vipdatasync
     Loaded 1 attestation from GitHub API
