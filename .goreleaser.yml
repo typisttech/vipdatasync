@@ -40,16 +40,13 @@ brews:
     description: "CLI utility for WordPress VIP data sync management"
     license: MIT
     skip_upload: auto
-
     custom_block: |
       head do
         url "https://github.com/typisttech/vipdatasync.git", branch: "main"
         depends_on "go" => :build
       end
-
     test: |
-      system "#{bin}/vipdatasync" "--version"
-
+      system "#{bin}/vipdatasync", "--version"
     install: |
       if build.head?
         system "go", "build", "-o", "dist/vipdatasync", "./cmd/vipdatasync"
@@ -57,7 +54,6 @@ brews:
       else
         bin.install "vipdatasync"
       end
-
     repository:
       owner: typisttech
       name: homebrew-vipdatasync
