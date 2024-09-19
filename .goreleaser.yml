@@ -19,6 +19,9 @@ builds:
 
 gomod:
   proxy: true
+  env:
+    - GOPROXY=https://proxy.golang.org
+    - GOSUMDB=sum.golang.org
 
 changelog:
   disable: true
