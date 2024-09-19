@@ -463,7 +463,7 @@ Visit the [latest release](https://github.com/typisttech/vipdatasync/releases/la
 
 1. Download the archive for the desired edition, operating system, and architecture
 2. Extract the archive
-3. (Optional) xxx
+3. *(Optional)* Verify the integrity and provenance of the executable
     ```console
     $ gh attestation verify /path/to/vipdatasync_999.888.777_xxx_yyy/vipdatasync --repo typisttech/vipdatasync --signer-repo typisttech/vipdatasync
 
