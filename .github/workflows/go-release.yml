@@ -46,5 +46,5 @@ jobs:
       
       - uses: actions/attest-sbom@v1
         with:
-          subject-path: "dist/vipdatasync_${{ steps.semver.outputs.tag }}_darwin_amd64.tar.gz.sbom.json"
-          sbom-path: "dist/vipdatasync_${{ steps.semver.outputs.tag }}_darwin_amd64.tar.gz.sbom.json"
+          subject-path: "dist/vipdatasync_${{ steps.semver.outputs.semver }}_darwin_amd64.tar.gz.sbom.json"
+          sbom-path: "dist/vipdatasync_${{ steps.semver.outputs.semver }}_darwin_amd64.tar.gz.sbom.json"
