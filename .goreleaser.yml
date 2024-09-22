@@ -27,13 +27,14 @@ gomod:
     - GOPROXY=https://proxy.golang.org
     - GOSUMDB=sum.golang.org
 
-changelog:
+checksum:
   disable: true
-
-report_sizes: true
 
 sboms:
   - artifacts: archive
+
+changelog:
+  disable: true
 
 # brews:
 #   - name: vipdatasync
