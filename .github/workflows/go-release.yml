@@ -43,6 +43,16 @@ jobs:
 #            dist/vipdatasync_*.tar.gz
 #            dist/**/*.sbom.json
 
+  debug:
+    runs-on: ubuntu-latest
+    needs: [goreleaser]
+    steps:
+      - run: echo $XXX
+        env:
+          XXX: ${{ needs.goreleaser.steps.upload.outputs.artifact }}
+
+      - run: echo ${{ fromJson(needs.goreleaser.steps.upload.outputs.attestations) }}
+
   attest-sbom:
     runs-on: ubuntu-latest
     needs: [goreleaser]
