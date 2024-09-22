@@ -30,21 +30,31 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAP_GITHUB_TOKEN: ${{ secrets.TAP_GITHUB_TOKEN }}
+
+      - name: Hello world action step
+        id: hello
+        uses: typisttech/tmp-attest-goreleaser-sbom-action@main
+        with:
+          who-to-greet: 'Foo bar xxxx'
+
+      # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
       
-      - uses: actions/attest-build-provenance@v1
-        with:
-          subject-path: |
-            dist/vipdatasync_*.checksums.txt
-            dist/vipdatasync_*/vipdatasync
-            dist/vipdatasync_*.tar.gz
-            dist/**/*.sbom.json
-
-      - id: semver
-        run: echo "semver=${CURRENT_REF_NAME#v}" >> $GITHUB_OUTPUT
-        env:
-          CURRENT_REF_NAME: ${{ github.ref_name }}
-
-      - uses: actions/attest-sbom@v1
-        with:
-          subject-path: "dist/vipdatasync_${{ steps.semver.outputs.semver }}_darwin_amd64.tar.gz"
-          sbom-path: "dist/vipdatasync_${{ steps.semver.outputs.semver }}_darwin_amd64.tar.gz.sbom.json"
+#      - uses: actions/attest-build-provenance@v1
+#        with:
+#          subject-path: |
+#            dist/vipdatasync_*.checksums.txt
+#            dist/vipdatasync_*/vipdatasync
+#            dist/vipdatasync_*.tar.gz
+#            dist/**/*.sbom.json
+#
+#      - id: semver
+#        run: echo "semver=${CURRENT_REF_NAME#v}" >> $GITHUB_OUTPUT
+#        env:
+#          CURRENT_REF_NAME: ${{ github.ref_name }}
+#
+#      - uses: actions/attest-sbom@v1
+#        with:
+#          subject-path: "dist/vipdatasync_${{ steps.semver.outputs.semver }}_darwin_amd64.tar.gz"
+#          sbom-path: "dist/vipdatasync_${{ steps.semver.outputs.semver }}_darwin_amd64.tar.gz.sbom.json"
