@@ -35,9 +35,7 @@ jobs:
       - id: hello
         uses: typisttech/tmp-attest-goreleaser-sbom-action/.github/actions/metadata@main
 
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+      - run: echo "The time was ${{ steps.hello.outputs.artifacts }}"
       
 #      - uses: actions/attest-build-provenance@v1
 #        with:
