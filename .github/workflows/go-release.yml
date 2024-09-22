@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write # for goreleaser
-      id-token: write # for attesttions
-      attestations: write # for attesttions
+#      id-token: write # for attesttions
+#      attestations: write # for attesttions
     steps:
       - uses: actions/checkout@v4
         with:
@@ -21,15 +21,16 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version-file: 'go.mod'
+
       - uses: anchore/sbom-action/download-syft@v0
 
       - uses: goreleaser/goreleaser-action@v6
         with:
           version: '~> v2'
-          args: release --clean --fail-fast
+          args: release --clean --fail-fast --skip=announce,publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAP_GITHUB_TOKEN: ${{ secrets.TAP_GITHUB_TOKEN }}
+#          TAP_GITHUB_TOKEN: ${{ secrets.TAP_GITHUB_TOKEN }}
 
       - name: Hello world action step
         id: hello
