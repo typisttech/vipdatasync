@@ -34,7 +34,7 @@ jobs:
 
       - name: Hello world action step
         id: hello
-        uses: typisttech/tmp-attest-goreleaser-sbom-action/.github/actions/hello-world-action@main
+        uses: typisttech/tmp-attest-goreleaser-sbom-action/.github/actions/metadata@main
         with:
           who-to-greet: 'Foo bar xxxx'
 
