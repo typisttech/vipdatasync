@@ -11,9 +11,14 @@ jobs:
   goreleaser:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # for goreleaser
-#      id-token: write # for attesttions
-#      attestations: write # for attesttions
+      contents: write
+
+
+    # Expose step outputs as job outputs
+    outputs:
+      upload-sbom-attestations: ${{ steps.upload-sbom.outputs.attestations }}
+      upload-sbom-artifact: ${{ steps.upload-sbom.outputs.artifact }}
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,7 +37,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #          TAP_GITHUB_TOKEN: ${{ secrets.TAP_GITHUB_TOKEN }}
 
-      - id: upload
+      - id: upload-sbom
         uses: typisttech/tmp-attest-goreleaser-sbom-action@main
 
 #      - uses: actions/attest-build-provenance@v1
@@ -49,9 +54,9 @@ jobs:
     steps:
       - run: echo $XXX
         env:
-          XXX: ${{ needs.goreleaser.steps.upload.outputs.artifact }}
+          XXX: ${{ needs.goreleaser.outputs.upload-sbom-attestations }}
 
-      - run: echo ${{ fromJson(needs.goreleaser.steps.upload.outputs.attestations) }}
+      - run: echo ${{ needs.goreleaser.outputs.upload-sbom-attestations }}
 
   attest-sbom:
     runs-on: ubuntu-latest
@@ -62,12 +67,12 @@ jobs:
 
     strategy:
       matrix:
-        attestation: ${{ fromJson(needs.goreleaser.steps.upload.outputs.attestations) }}
+        attestation: ${{ needs.goreleaser.outputs.upload-sbom-attestations }}
 
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: ${{ needs.goreleaser.steps.upload.outputs.artifact }}
+          name: ${{ needs.goreleaser.outputs.upload-sbom-artifact }}
 
       - uses: actions/attest-sbom@v1
         with:
