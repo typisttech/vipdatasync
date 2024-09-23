@@ -81,11 +81,13 @@ jobs:
     needs: [release, attest-build-provenance, attest-sbom]
     runs-on: ubuntu-latest
     steps:
-      - run: gh release download --clobber -D artifacts -R $REPO $TAG
+      - run: gh release download --clobber --dir artifacts --repo $REPO $TAG
         env:
           REPO: ${{ github.repository }}
           TAG: ${{ github.ref_name }}
+          GH_TOKEN: ${{ github.token }}
       - run: ls | xargs -I {} gh attestation verify --repo $REPO {}
         working-directory: artifacts
         env:
           REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
