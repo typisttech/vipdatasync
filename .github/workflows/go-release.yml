@@ -74,7 +74,7 @@ jobs:
       attestations: write
     strategy:
       matrix:
-        attestation: ${{ needs.goreleaser.outputs.sbom-attestations }}
+        attestation: ${{ fromJSON(needs.goreleaser.outputs.sbom-attestations) }}
     steps:
       - uses: actions/download-artifact@v4
         with:
