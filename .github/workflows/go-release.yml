@@ -77,15 +77,15 @@ jobs:
           subject-path: ${{ matrix.attestation.subject }}
           sbom-path: ${{ matrix.attestation.sbom }}
 
-    verify-attest:
-      needs: [release, attest-build-provenance, attest-sbom]
-      runs-on: ubuntu-latest
-      steps:
-        - run: gh release download -R $REPO $TAG -D artifacts
-          env:
-            REPO: ${{ github.repository }}
-            TAG: ${{ github.ref_name }}
-        - run: ls | xargs -I {} gh attestation verify --repo $REPO {}
-          working-directory: artifacts
-          env:
-            REPO: ${{ github.repository }}
+  verify-attestation:
+    needs: [release, attest-build-provenance, attest-sbom]
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh release download --clobber -D artifacts -R $REPO $TAG
+        env:
+          REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+      - run: ls | xargs -I {} gh attestation verify --repo $REPO {}
+        working-directory: artifacts
+        env:
+          REPO: ${{ github.repository }}
