@@ -38,9 +38,6 @@ changelog:
 
 brews:
   - name: vipdatasync
-    commit_author:
-      name: tangrufusbot
-      email: 39258755+tangrufusbot@users.noreply.github.com
     directory: Formula
     homepage: "https://github.com/typisttech/vipdatasync"
     description: "CLI utility for WordPress VIP data sync management"
