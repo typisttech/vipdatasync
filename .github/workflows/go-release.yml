@@ -51,13 +51,14 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
+          path: dist
           name: ${{ needs.release.outputs.build-provenance-artifact }}
       - uses: actions/attest-build-provenance@v1
         with:
           subject-path: |
-            vipdatasync_*/vipdatasync
-            vipdatasync_*.tar.gz
-            **/*.sbom.json
+            dist/vipdatasync_*/vipdatasync
+            dist/vipdatasync_*.tar.gz
+            dist/**/*.sbom.json
 
   attest-sbom:
     needs: [release]
@@ -81,7 +82,6 @@ jobs:
     needs: [release, attest-build-provenance, attest-sbom]
     runs-on: ubuntu-latest
     steps:
-      - run: rm -dfr artifacts
       - run: gh release download --clobber --dir artifacts --repo $REPO --pattern $PATTERN $TAG
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
