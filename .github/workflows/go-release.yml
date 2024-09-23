@@ -1,4 +1,4 @@
-name: Go Release
+name: Release
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     permissions:
       contents: write
     outputs:
-      build-artifact: 'attest-goreleaser'
+      build-provenance-artifact: build-provenance
       sbom-attestations: ${{ steps.upload-sbom.outputs.attestations }}
       sbom-artifact: ${{ steps.upload-sbom.outputs.artifact }}
     steps:
@@ -32,13 +32,11 @@ jobs:
           args: release --clean --fail-fast --skip=announce,publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          TAP_GITHUB_TOKEN: ${{ secrets.TAP_GITHUB_TOKEN }}
+          TAP_GITHUB_TOKEN: ${{ secrets.TAP_GITHUB_TOKEN }}
 
       - uses: actions/upload-artifact@v4
-        id: upload-build
         with:
-          name: 'attest-goreleaser'
-          if-no-files-found: error
+          name: build-provenance
           compression-level: 0
           path: |
             dist/vipdatasync_*/vipdatasync
@@ -48,7 +46,7 @@ jobs:
       - uses: typisttech/tmp-attest-goreleaser-sbom-action@main
         id: upload-sbom
 
-  attest-build:
+  attest-build-provenance:
     runs-on: ubuntu-latest
     needs: [goreleaser]
     permissions:
@@ -57,11 +55,10 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: ${{ needs.goreleaser.outputs.build-artifact }}
+          name: ${{ needs.goreleaser.outputs.build-provenance-artifact }}
       - uses: actions/attest-build-provenance@v1
         with:
           subject-path: |
-            vipdatasync_*.checksums.txt
             vipdatasync_*/vipdatasync
             vipdatasync_*.tar.gz
             **/*.sbom.json
