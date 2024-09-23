@@ -41,7 +41,7 @@ jobs:
             dist/vipdatasync_*/vipdatasync
             dist/vipdatasync_*.tar.gz
             dist/**/*.sbom.json
-      - uses: typisttech/upload-goreleaser-sbom-action@main
+      - uses: typisttech/upload-goreleaser-sbom-action@v0
         id: upload-sbom
         with:
           artifact: sbom-artifact
