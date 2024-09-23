@@ -15,7 +15,7 @@ jobs:
     outputs:
       build-provenance-artifact: build-provenance
       sbom-attestations: ${{ steps.upload-sbom.outputs.attestations }}
-      sbom-artifact: ${{ steps.upload-sbom.outputs.artifact }}
+      sbom-artifact: sbom-artifact
     steps:
       - uses: actions/checkout@v4
         with:
@@ -39,8 +39,10 @@ jobs:
             dist/vipdatasync_*/vipdatasync
             dist/vipdatasync_*.tar.gz
             dist/**/*.sbom.json
-      - uses: typisttech/tmp-attest-goreleaser-sbom-action@main
+      - uses: typisttech/upload-goreleaser-sbom-action@main
         id: upload-sbom
+        with:
+          artifact: sbom-artifact
 
   attest-build-provenance:
     needs: [release]
