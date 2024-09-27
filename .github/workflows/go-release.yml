@@ -42,7 +42,7 @@ jobs:
       - uses: typisttech/upload-goreleaser-sboms-action@exit
         id: upload-sbom
         with:
-          retention-days: abc
+          retention-days: 8
           compression-level: ''
 
   attest-build-provenance:
