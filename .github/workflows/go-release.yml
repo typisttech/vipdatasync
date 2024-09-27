@@ -41,6 +41,9 @@ jobs:
             dist/**/*.sbom.json
       - uses: typisttech/upload-goreleaser-sboms-action@main
         id: upload-sbom
+        with:
+          retention-days: abc
+          compression-level: ''
 
   attest-build-provenance:
     needs: [release]
@@ -72,7 +75,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: sbom-artifact
+          name: sboms
       - uses: actions/attest-sbom@v1
         with:
           subject-path: ${{ matrix.attestation.subject }}
