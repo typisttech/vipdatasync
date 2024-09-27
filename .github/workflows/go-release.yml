@@ -43,7 +43,7 @@ jobs:
         id: upload-sbom
         with:
           retention-days: 8
-          compression-level: ''
+          compression-level: 2
 
   attest-build-provenance:
     needs: [release]
