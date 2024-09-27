@@ -39,7 +39,7 @@ jobs:
             dist/vipdatasync_*/vipdatasync
             dist/vipdatasync_*.tar.gz
             dist/**/*.sbom.json
-      - uses: typisttech/upload-goreleaser-sboms-action@main
+      - uses: typisttech/upload-goreleaser-sboms-action@exit
         id: upload-sbom
         with:
           retention-days: abc
