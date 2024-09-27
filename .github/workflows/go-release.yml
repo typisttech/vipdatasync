@@ -39,11 +39,8 @@ jobs:
             dist/vipdatasync_*/vipdatasync
             dist/vipdatasync_*.tar.gz
             dist/**/*.sbom.json
-      - uses: typisttech/upload-goreleaser-sboms-action@exit
+      - uses: typisttech/upload-goreleaser-sboms-action@main
         id: upload-sbom
-        with:
-          retention-days: 8
-          compression-level: 2
 
   attest-build-provenance:
     needs: [release]
@@ -90,6 +87,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
           TAG: ${{ github.ref_name }}
+      - run: tree artifacts
       - run: ls | xargs -I {} gh attestation verify --repo $REPO {}
         working-directory: artifacts
         env:
