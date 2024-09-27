@@ -13,9 +13,7 @@ jobs:
     permissions:
       contents: write
     outputs:
-      build-provenance-artifact-name: build-provenance
       build-provenance-artifact-id: ${{ steps.upload-build-provenance.outputs.artifact-id }}
-      sbom-artifact-name: sbom-artifact
       sbom-artifact-id: ${{ steps.upload-sbom.outputs.artifact-id }}
       sbom-attestations: ${{ steps.upload-sbom.outputs.attestations }}
     steps:
@@ -41,10 +39,8 @@ jobs:
             dist/vipdatasync_*/vipdatasync
             dist/vipdatasync_*.tar.gz
             dist/**/*.sbom.json
-      - uses: typisttech/upload-goreleaser-sboms-action@v0
+      - uses: typisttech/upload-goreleaser-sboms-action@main
         id: upload-sbom
-        with:
-          artifact: sbom-artifact
 
   attest-build-provenance:
     needs: [release]
@@ -56,7 +52,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           path: dist
-          name: ${{ needs.release.outputs.build-provenance-artifact-name }}
+          name: build-provenance
       - uses: actions/attest-build-provenance@v1
         with:
           subject-path: |
@@ -76,21 +72,20 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: ${{ needs.release.outputs.sbom-artifact-name }}
+          name: sbom-artifact
       - uses: actions/attest-sbom@v1
         with:
           subject-path: ${{ matrix.attestation.subject }}
           sbom-path: ${{ matrix.attestation.sbom }}
 
-  verify-attestation:
+  verify:
     needs: [release, attest-build-provenance, attest-sbom]
     runs-on: ubuntu-latest
     steps:
-      - run: gh release download --clobber --dir artifacts --repo $REPO --pattern $PATTERN $TAG
+      - run: gh release download --clobber --dir artifacts --repo $REPO $TAG
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
-          PATTERN: '*'
           TAG: ${{ github.ref_name }}
       - run: ls | xargs -I {} gh attestation verify --repo $REPO {}
         working-directory: artifacts
@@ -98,8 +93,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
 
-  cleanup-artifact:
-    needs: [release, verify-attestation]
+  cleanup:
+    needs: [release, verify]
     runs-on: ubuntu-latest
     permissions:
       actions: write
